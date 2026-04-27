@@ -1,0 +1,8 @@
+node_modules/
+cert.pem
+key.pem
+*.pem
+*.p12
+.expo/
+dist/
+build/
