@@ -2,6 +2,8 @@
 
 Una aplicació web progressiva (PWA) per gestionar les finances personals de forma senzilla, segura i des de qualsevol dispositiu.
 
+🌐 **Accés en línia:** [https://devevalles.github.io/finances-app/](https://devevalles.github.io/finances-app/)
+
 ---
 
 ## Què és Finances App?
@@ -14,7 +16,7 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 
 ## Funcionalitats principals
 
-### 🔐 Seguretat i accés
+### 🔐 Seguretat i accés (crec que això ho he tret)
 - Autenticació biométrica (Face ID / empremta digital) via WebAuthn
 - Pantalla de bloqueig amb rellotge i data
 - Accés alternatiu per toc en cas que la biometria no estigui disponible
@@ -117,4 +119,4 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Llicència
 
-Ús personal. Tots els drets reservats © David Vallès.
+Ús personal. Tots els drets reservats © David Vallès Claude.
