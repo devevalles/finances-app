@@ -112,6 +112,13 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v17 — Abril 2026
+- Nou mètode de pagament "Banc" per a despeses
+- Targetes i bancs configurables des del botó ··· → Configuració, amb noms personalitzats
+- Selecció automàtica del compte més utilitzat en afegir una despesa
+- Moviments agrupats per dia dins de cada mes, amb etiqueta de data visible
+- El nom del compte (targeta o banc) es mostra als moviments i a l'exportació CSV
+
 ### v16 — Abril 2026
 - Vista d'escriptori centrada amb ample màxim de 645px per simular proporcions mòbil
 - Marges laterals en gris clar, diferenciat del fons de l'app
