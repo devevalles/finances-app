@@ -117,6 +117,10 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v16 — Abril 2026
+- Vista d'escriptori centrada amb ample màxim de 645px per simular proporcions mòbil
+- Marges laterals en gris clar, diferenciat del fons de l'app
+
 ### v15 — Abril 2026
 - Estadístiques redissenyades: cards blanques amb box interior gris, títol centrat, boxes iguals
 - Pestanya activa a la barra inferior ressaltada amb oval blau
