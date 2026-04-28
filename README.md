@@ -112,40 +112,40 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
-### v17 — Abril 2026
+### v1.17 — 28 d'abril 2026
 - Nou mètode de pagament "Banc" per a despeses
 - Targetes i bancs configurables des del botó ··· → Configuració, amb noms personalitzats
 - Selecció automàtica del compte més utilitzat en afegir una despesa
 - Moviments agrupats per dia dins de cada mes, amb etiqueta de data visible
 - El nom del compte (targeta o banc) es mostra als moviments i a l'exportació CSV
 
-### v16 — Abril 2026
+### v1.16 — 28 d'abril 2026
 - Vista d'escriptori centrada amb ample màxim de 645px per simular proporcions mòbil
 - Marges laterals en gris clar, diferenciat del fons de l'app
 
-### v15 — Abril 2026
+### v1.15 — 28 d'abril 2026
 - Estadístiques redissenyades: cards blanques amb box interior gris, títol centrat, boxes iguals
 - Pestanya activa a la barra inferior ressaltada amb oval blau
 - Botó ··· en gris per diferenciar-lo del botó d'afegir
 
-### v14 — Abril 2026
+### v1.14 — 28 d'abril 2026
 - Botons "Importar PDF" i "Afegir" de la pantalla principal amb fons sòlid i més visibles
 - Camp Concepte obligatori, situat just sota del preu al formulari
 - Bizum afegit com a mètode de pagament en despeses
 - Categoria "Salut" eliminada; categories reorganitzades en 3×3
 
-### v13 — Abril 2026
+### v1.13 — 28 d'abril 2026
 - Cerca dins de les finestres de detall de categoria (Resum → Despeses/Ingressos)
 - Balanç positiu mostra el box de Finances en verd
 - Tendències configurables: 3 mesos, 6 mesos o 1 any
 - Estadística "Mitjana" eliminada; "Major despesa" mostra el nom de la transacció
 - Botons d'acció amb més contrast visual
 
-### v11 — Abril 2026
+### v1.11 — 28 d'abril 2026
 - Cerca de transaccions en temps real (per categoria, nota o import)
 - Exportació a CSV per a Excel i Google Sheets
 
-### v10 — Abril 2026
+### v1.10 — 27 d'abril 2026
 - Millores de rendiment en la càrrega del service worker
 - Sistema de compensacions refinat amb desvinculació massiva
 
