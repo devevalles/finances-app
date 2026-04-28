@@ -23,12 +23,13 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 
 ### ➕ Gestió de moviments
 - Afegir, editar i eliminar despeses i ingressos
-- Notes descriptives per a cada transacció (màx. 100 caràcters)
-- Selecció del mètode de pagament: targeta, efectiu, transferència o Bizum
+- Camp **Concepte** obligatori per identificar cada transacció
+- Mètodes de pagament en despeses: Targeta · Efectiu · Bizum
+- Mètodes de pagament en ingressos: Transferència · Bizum · Efectiu
 - Selecció de data personalitzada per a cada moviment
 
 ### 🗂️ Categories
-**Despeses (10):** Alimentació · Restaurants · Transport · Entreteniment · Salut · Roba · Llar · Subscripcions · Educació · Altres
+**Despeses (9):** Alimentació · Restaurants · Transport · Entreteniment · Roba · Llar · Subscripcions · Educació · Altres
 
 **Ingressos (6):** Salari · Freelance · Bizum · Transferència · Regal · Altres ingressos
 
@@ -40,8 +41,8 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 ### 📊 Resum i estadístiques
 - Resum mensual amb total d'ingressos, despeses i estalvi net
 - Desglossament per categories amb barres de percentatge
-- Estadístiques: nombre de transaccions, despesa màxima i despesa mitjana
-- Gràfic de tendències dels últims 6 mesos (ingressos vs. despeses)
+- Estadístiques: nombre de despeses i major despesa (amb el nom de la transacció)
+- Gràfic de tendències configurable: 3 mesos, 6 mesos o 1 any
 
 ### 📄 Importació de PDF bancaris
 - Càrrega d'extractes bancaris en format PDF
@@ -116,12 +117,23 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
-### v12 — Abril 2026
+### v15 — Abril 2026
+- Estadístiques redissenyades: cards blanques amb box interior gris, títol centrat, boxes iguals
+- Pestanya activa a la barra inferior ressaltada amb oval blau
+- Botó ··· en gris per diferenciar-lo del botó d'afegir
+
+### v14 — Abril 2026
+- Botons "Importar PDF" i "Afegir" de la pantalla principal amb fons sòlid i més visibles
+- Camp Concepte obligatori, situat just sota del preu al formulari
+- Bizum afegit com a mètode de pagament en despeses
+- Categoria "Salut" eliminada; categories reorganitzades en 3×3
+
+### v13 — Abril 2026
 - Cerca dins de les finestres de detall de categoria (Resum → Despeses/Ingressos)
 - Balanç positiu mostra el box de Finances en verd
 - Tendències configurables: 3 mesos, 6 mesos o 1 any
-- Estadística "Mitjana" eliminada; "Major despesa" és ara clicable
-- Botons d'acció (···, Importar PDF, Afegir) amb més contrast visual
+- Estadística "Mitjana" eliminada; "Major despesa" mostra el nom de la transacció
+- Botons d'acció amb més contrast visual
 
 ### v11 — Abril 2026
 - Cerca de transaccions en temps real (per categoria, nota o import)
