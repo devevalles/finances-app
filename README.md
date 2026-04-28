@@ -16,7 +16,7 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 
 ## Funcionalitats principals
 
-### 🔐 Seguretat i accés (crec que això ho he tret)
+### 🔐 Seguretat i accés
 - Autenticació biométrica (Face ID / empremta digital) via WebAuthn
 - Pantalla de bloqueig amb rellotge i data
 - Accés alternatiu per toc en cas que la biometria no estigui disponible
@@ -50,15 +50,21 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 - Vista prèvia amb possibilitat d'ajustar categories abans d'importar
 - Deduplicació per evitar duplicats
 
-### 💾 Còpia de seguretat i restauració
-- Exportació de totes les dades en format JSON amb data al nom del fitxer
+### 🔍 Cerca de transaccions
+- Barra de cerca a la pestanya Moviments
+- Filtra en temps real per categoria, nota o import
+- Compatible amb els filtres de tipus (totes / despeses / ingressos)
+
+### 💾 Còpia de seguretat i exportació
+- Exportació de totes les dades en format JSON (còpia de seguretat)
+- Exportació a CSV compatible amb Excel i Google Sheets
 - Importació amb opció de fusionar o substituir les dades existents
 - Emmagatzematge local al dispositiu (localStorage), sense servidor extern
 
 ### 🧭 Navegació i interfície
 **Tres pestanyes principals:**
 1. **Inici** — Resum del mes actual i últimes 6 transaccions
-2. **Moviments** — Llistat complet filtrable (totes / despeses / ingressos), agrupat per mes
+2. **Moviments** — Llistat complet filtrable i cercable, agrupat per mes
 3. **Resum** — Estadístiques mensuals i gràfic de tendències
 
 - Navegació per gestos (swipe esquerra/dreta entre pestanyes)
@@ -110,13 +116,16 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v11 — Abril 2026
+- Cerca de transaccions en temps real (per categoria, nota o import)
+- Exportació a CSV per a Excel i Google Sheets
+
 ### v10 — Abril 2026
-- Versió estable actual
-- Millores de rendiment en la càrrega del servei worker
+- Millores de rendiment en la càrrega del service worker
 - Sistema de compensacions refinat amb desvinculació massiva
 
 ---
 
 ## Llicència
 
-Ús personal. Tots els drets reservats © David Vallès Claude.
+Ús personal. Tots els drets reservats © David Vallès.

@@ -98,7 +98,14 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
   padding:1px 5px;border-radius:4px;margin-left:4px;vertical-align:middle}
 
 /* filter pills */
-.frow{display:flex;padding:4px 16px 8px;gap:8px}
+.frow{display:flex;padding:4px 16px 8px;gap:8px;overflow-x:auto;flex-shrink:0}
+
+/* search bar */
+.search-wrap{padding:0 16px 8px;position:relative;flex-shrink:0}
+.search-inp{width:100%;padding:9px 36px 9px 36px;border-radius:12px;background:var(--gray5);border:none;font-size:15px;color:var(--label);font-family:inherit;outline:none}
+.search-inp::placeholder{color:var(--gray)}
+.search-ico{position:absolute;left:28px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
+.search-x{position:absolute;right:26px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--gray3);cursor:pointer;background:none;border:none;padding:0;line-height:1}
 .pill{display:flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;
   background:var(--gray5);border:none;cursor:pointer;font-size:13px;font-weight:500;color:var(--gray);transition:all .15s;font-family:inherit}
 .pill.on{background:var(--blue);color:#fff}
@@ -382,6 +389,11 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
     <button class="pill on" id="f-all" onclick="setFilter('all')">Tots</button>
     <button class="pill" id="f-exp" onclick="setFilter('expense')">💸 Despeses</button>
     <button class="pill" id="f-inc" onclick="setFilter('income')">💰 Ingressos</button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-ico">🔍</span>
+    <input class="search-inp" id="search-inp" type="search" placeholder="Cerca per categoria, nota o import..." oninput="onSearch(this.value)" autocomplete="off" autocorrect="off" spellcheck="false">
+    <button class="search-x" id="search-x" onclick="clearSearch()" style="display:none">✕</button>
   </div>
   <div class="scroll" id="mov-list"></div>
   <div class="tabbar">
@@ -787,7 +799,8 @@ function txHTML(t,all,sep=false){
 }
 
 // ── MOVEMENTS ────────────────────────────────────────────────────
-let curFilter='all';
+let curFilter='all', searchQ='';
+
 function setFilter(f){
   curFilter=f;
   document.getElementById('f-all').className='pill'+(f==='all'?' on':'');
@@ -796,12 +809,28 @@ function setFilter(f){
   renderMovements();
 }
 
+function onSearch(val){
+  searchQ=val;
+  document.getElementById('search-x').style.display=val?'block':'none';
+  renderMovements();
+}
+
+function clearSearch(){
+  searchQ='';
+  document.getElementById('search-inp').value='';
+  document.getElementById('search-x').style.display='none';
+  renderMovements();
+}
+
 function renderMovements(){
   const all=load().map(norm);
-  const filtered=curFilter==='all'?all:all.filter(t=>t.type===curFilter);
+  let filtered=curFilter==='all'?all:all.filter(t=>t.type===curFilter);
+  const q=searchQ.trim().toLowerCase();
+  if(q){filtered=filtered.filter(t=>{const c=getCat(t.categoryId);return(t.note||'').toLowerCase().includes(q)||c.label.toLowerCase().includes(q)||t.amount.toFixed(2).includes(q)||String(t.amount).includes(q)})}
   const list=document.getElementById('mov-list');
   if(filtered.length===0){
-    list.innerHTML=`<div class="empty"><div class="empty-ico">🧾</div><div class="empty-title">Sense moviments</div><div class="empty-sub">No hi ha dades per a aquest filtre</div></div>`;
+    const msg=q?`Cap resultat per "${q}"`:'No hi ha dades per a aquest filtre';
+    list.innerHTML=`<div class="empty"><div class="empty-ico">${q?'🔍':'🧾'}</div><div class="empty-title">Sense moviments</div><div class="empty-sub">${msg}</div></div>`;
     return;
   }
   const groups={};
@@ -1406,6 +1435,7 @@ function closeImp(){document.getElementById('imp-overlay').classList.remove('ope
 function showBackupSheet(){
   const items=[
     {lbl:'📤 Exportar dades (còpia de seguretat)',fn:exportData},
+    {lbl:'📊 Exportar a CSV (per a Excel / Sheets)',fn:exportCSV},
     {lbl:'📥 Importar dades (restaurar)',fn:()=>document.getElementById('import-file').click()},
   ];
   document.getElementById('asheet-items').innerHTML=items.map((it,i)=>
@@ -1424,6 +1454,32 @@ function exportData(){
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast('Dades exportades ✓');
+}
+
+function exportCSV(){
+  const all=load().map(norm);
+  if(!all.length){showToast('No hi ha dades per exportar');return}
+  const methodMap={card:'Targeta',cash:'Efectiu',transfer:'Transferència',bizum:'Bizum'};
+  const header=['Data','Tipus','Categoria','Import (€)','Mètode','Nota'];
+  const rows=all.map(t=>{
+    const c=getCat(t.categoryId);
+    const d=new Date(t.date).toLocaleDateString('ca-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
+    const type=t.type==='expense'?'Despesa':'Ingrés';
+    const sign=t.type==='expense'?'-':'+';
+    const amt=sign+t.amount.toFixed(2).replace('.',',');
+    const meth=methodMap[t.paymentMethod]||'';
+    const note=(t.note||'').replace(/"/g,'""');
+    return[d,type,c.label,amt,meth,`"${note}"`];
+  });
+  const csv=[header,...rows].map(r=>r.join(';')).join('\r\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const d=new Date().toISOString().split('T')[0];
+  a.href=url;a.download=`finances-${d}.csv`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('CSV exportat ✓');
 }
 function handleImport(inp){
   const file=inp.files[0];inp.value='';if(!file) return;
