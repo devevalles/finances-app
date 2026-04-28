@@ -116,6 +116,13 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v12 — Abril 2026
+- Cerca dins de les finestres de detall de categoria (Resum → Despeses/Ingressos)
+- Balanç positiu mostra el box de Finances en verd
+- Tendències configurables: 3 mesos, 6 mesos o 1 any
+- Estadística "Mitjana" eliminada; "Major despesa" és ara clicable
+- Botons d'acció (···, Importar PDF, Afegir) amb més contrast visual
+
 ### v11 — Abril 2026
 - Cerca de transaccions en temps real (per categoria, nota o import)
 - Exportació a CSV per a Excel i Google Sheets

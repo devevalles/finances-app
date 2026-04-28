@@ -1,4 +1,4 @@
-const CACHE = 'finances-v11';
+const CACHE = 'finances-v12';
 
 const PDF_CDN = [
   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',

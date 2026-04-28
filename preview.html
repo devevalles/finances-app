@@ -32,9 +32,11 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
 
 /* tab bar */
 .tabbar{background:rgba(255,255,255,.95);border-top:.5px solid rgba(0,0,0,.15);
-  display:flex;align-items:flex-start;padding-top:8px;
-  padding-bottom:max(12px,env(safe-area-inset-bottom,12px));flex-shrink:0}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0}
+  display:flex;align-items:flex-start;padding-top:6px;
+  padding-bottom:max(10px,env(safe-area-inset-bottom,10px));flex-shrink:0}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:2px 0}
+.tab-inner{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 16px;border-radius:14px;transition:background .15s}
+.tab.on .tab-inner{background:#E5F0FF}
 .tab-ico{font-size:22px;line-height:1}
 .tab-lbl{font-size:10px;font-weight:500;color:var(--gray)}
 .tab.on .tab-lbl{color:var(--blue)}
@@ -43,14 +45,14 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
 .ph{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 12px) 20px 8px}
 .ph-title{font-size:34px;font-weight:700;color:var(--label)}
 .ph-actions{display:flex;gap:8px}
-.ibtn{width:36px;height:36px;border-radius:18px;background:#E5F0FF;display:flex;align-items:center;
-  justify-content:center;cursor:pointer;border:none;font-size:18px;color:var(--blue);transition:opacity .15s}
-.ibtn:active{opacity:.6}
-.ibtn.g{background:#E8F8EE;color:var(--green)}
+.ibtn{width:36px;height:36px;border-radius:18px;background:var(--blue);display:flex;align-items:center;
+  justify-content:center;cursor:pointer;border:none;font-size:18px;color:#fff;transition:opacity .15s}
+.ibtn:active{opacity:.7}
+.ibtn.g{background:var(--green);color:#fff}
 
 /* hero card */
 .hero{margin:0 16px 16px;padding:22px 22px 18px;border-radius:20px;color:#fff}
-.hero.pos{background:var(--blue);box-shadow:0 8px 24px rgba(0,122,255,.4)}
+.hero.pos{background:var(--green);box-shadow:0 8px 24px rgba(52,199,89,.4)}
 .hero.neg{background:var(--red);box-shadow:0 8px 24px rgba(255,59,48,.4)}
 .hero-mo{font-size:14px;font-weight:500;opacity:.8;margin-bottom:2px}
 .hero-amt{font-size:42px;font-weight:700;letter-spacing:-1px;line-height:1.1}
@@ -66,8 +68,8 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
 .qa-card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   padding:20px 12px;border-radius:20px;border:none;cursor:pointer;font-family:inherit;transition:transform .1s}
 .qa-card:active{transform:scale(.96)}
-.qa-pdf{background:#EDEDFF;color:#5856D6}
-.qa-add{background:#E5F0FF;color:#007AFF}
+.qa-pdf{background:#5856D6;color:#fff}
+.qa-add{background:var(--blue);color:#fff}
 .qa-ico{font-size:26px;font-weight:400}
 .qa-lbl{font-size:15px;font-weight:600}
 
@@ -147,11 +149,14 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
 .bar-track{height:6px;background:var(--gray6);border-radius:3px;overflow:hidden}
 .bar-fill{height:6px;border-radius:3px;transition:width .4s}
 .cat-pct{font-size:12px;color:var(--gray);margin-top:3px}
-.stats-grid{display:flex;gap:10px}
-.stat-card{flex:1;background:var(--card);border-radius:16px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.stat-ico{font-size:22px}
-.stat-val{font-size:13px;font-weight:700;color:var(--label);text-align:center}
-.stat-lbl{font-size:11px;color:var(--gray);text-align:center}
+.stats-grid{display:flex;gap:12px;align-items:stretch}
+.stat-card{flex:1;background:var(--card);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.stat-top{display:flex;align-items:center;justify-content:center;gap:6px}
+.stat-lbl{font-size:15px;font-weight:700;color:var(--label)}
+.stat-ico{font-size:17px;line-height:1}
+.stat-vbox{flex:1;background:var(--gray6);border-radius:12px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.stat-val{font-size:24px;font-weight:700;color:var(--label);letter-spacing:-.5px}
+.stat-det{font-size:13px;color:var(--gray);text-align:center;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* trends chart */
 .chart-wrap{margin:0 16px;background:var(--card);border-radius:16px;padding:16px}
@@ -338,7 +343,7 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
     <div class="ph">
       <span class="ph-title">Finances</span>
       <div class="ph-actions">
-        <button class="ibtn" onclick="showBackupSheet()" title="Exportar / Importar" style="font-size:20px;letter-spacing:1px">···</button>
+        <button class="ibtn" onclick="showBackupSheet()" title="Exportar / Importar" style="background:#636366;font-size:20px;letter-spacing:1px">···</button>
       </div>
     </div>
     <div class="hero pos" id="hero">
@@ -371,9 +376,9 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
     <div style="height:24px"></div>
   </div>
   <div class="tabbar">
-    <div class="tab on" onclick="gotoTab('home')" id="t1-home"><div class="tab-ico">🏠</div><div class="tab-lbl" style="color:var(--blue)">Inici</div></div>
-    <div class="tab" onclick="gotoTab('movements')" id="t1-mov"><div class="tab-ico">↕️</div><div class="tab-lbl">Moviments</div></div>
-    <div class="tab" onclick="gotoTab('summary')" id="t1-sum"><div class="tab-ico">📊</div><div class="tab-lbl">Resum</div></div>
+    <div class="tab on" onclick="gotoTab('home')" id="t1-home"><div class="tab-inner"><div class="tab-ico">🏠</div><div class="tab-lbl" style="color:var(--blue)">Inici</div></div></div>
+    <div class="tab" onclick="gotoTab('movements')" id="t1-mov"><div class="tab-inner"><div class="tab-ico">↕️</div><div class="tab-lbl">Moviments</div></div></div>
+    <div class="tab" onclick="gotoTab('summary')" id="t1-sum"><div class="tab-inner"><div class="tab-ico">📊</div><div class="tab-lbl">Resum</div></div></div>
   </div>
 </div>
 
@@ -381,7 +386,7 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
 <div class="screen" id="screen-movements">
   <div class="ph"><span class="ph-title">Moviments</span>
     <div class="ph-actions">
-      <button class="ibtn" style="background:#EDEDFF;color:#5856D6" onclick="triggerPdf()" title="Importar PDF">📄</button>
+      <button class="ibtn" style="background:#5856D6;color:#fff" onclick="triggerPdf()" title="Importar PDF">📄</button>
       <button class="ibtn" onclick="openAdd('expense')">＋</button>
     </div>
   </div>
@@ -397,9 +402,9 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
   </div>
   <div class="scroll" id="mov-list"></div>
   <div class="tabbar">
-    <div class="tab" onclick="gotoTab('home')" id="t2-home"><div class="tab-ico">🏠</div><div class="tab-lbl">Inici</div></div>
-    <div class="tab on" onclick="gotoTab('movements')" id="t2-mov"><div class="tab-ico">↕️</div><div class="tab-lbl" style="color:var(--blue)">Moviments</div></div>
-    <div class="tab" onclick="gotoTab('summary')" id="t2-sum"><div class="tab-ico">📊</div><div class="tab-lbl">Resum</div></div>
+    <div class="tab" onclick="gotoTab('home')" id="t2-home"><div class="tab-inner"><div class="tab-ico">🏠</div><div class="tab-lbl">Inici</div></div></div>
+    <div class="tab on" onclick="gotoTab('movements')" id="t2-mov"><div class="tab-inner"><div class="tab-ico">↕️</div><div class="tab-lbl" style="color:var(--blue)">Moviments</div></div></div>
+    <div class="tab" onclick="gotoTab('summary')" id="t2-sum"><div class="tab-inner"><div class="tab-ico">📊</div><div class="tab-lbl">Resum</div></div></div>
   </div>
 </div>
 
@@ -438,7 +443,7 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
         <div class="card" id="sum-cat-list"></div>
       </div>
       <div class="sec" id="sum-stats-sec" style="display:none;margin-top:12px">
-        <div class="sec-title" style="margin-bottom:8px">Estadísticas</div>
+        <div class="sec-title" style="margin-bottom:8px">Estadístiques</div>
         <div class="stats-grid" id="sum-stats"></div>
       </div>
       <div id="sum-empty" class="empty" style="display:none;padding-top:20px">
@@ -448,8 +453,13 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
     </div>
     <!-- Tendencias panel -->
     <div id="panel-tendencias" style="display:none">
+      <div class="seg" style="margin:8px 16px 0">
+        <button class="seg-btn" id="trend-3m" onclick="setTrendPeriod(3)">3 mesos</button>
+        <button class="seg-btn on" id="trend-6m" onclick="setTrendPeriod(6)">6 mesos</button>
+        <button class="seg-btn" id="trend-1a" onclick="setTrendPeriod(12)">1 any</button>
+      </div>
       <div class="chart-wrap" style="margin-top:8px">
-        <div class="chart-title">ÚLTIMS 6 MESOS — INGRESSOS VS DESPESES</div>
+        <div class="chart-title" id="chart-title">ÚLTIMS 6 MESOS — INGRESSOS VS DESPESES</div>
         <div class="chart-area" id="chart-area"></div>
         <div class="chart-legend">
           <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Ingressos</div>
@@ -464,9 +474,9 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
     <div style="height:24px"></div>
   </div>
   <div class="tabbar">
-    <div class="tab" onclick="gotoTab('home')" id="t3-home"><div class="tab-ico">🏠</div><div class="tab-lbl">Inici</div></div>
-    <div class="tab" onclick="gotoTab('movements')" id="t3-mov"><div class="tab-ico">↕️</div><div class="tab-lbl">Moviments</div></div>
-    <div class="tab on" onclick="gotoTab('summary')" id="t3-sum"><div class="tab-ico">📊</div><div class="tab-lbl" style="color:var(--blue)">Resum</div></div>
+    <div class="tab" onclick="gotoTab('home')" id="t3-home"><div class="tab-inner"><div class="tab-ico">🏠</div><div class="tab-lbl">Inici</div></div></div>
+    <div class="tab" onclick="gotoTab('movements')" id="t3-mov"><div class="tab-inner"><div class="tab-ico">↕️</div><div class="tab-lbl">Moviments</div></div></div>
+    <div class="tab on" onclick="gotoTab('summary')" id="t3-sum"><div class="tab-inner"><div class="tab-ico">📊</div><div class="tab-lbl" style="color:var(--blue)">Resum</div></div></div>
   </div>
 </div>
 
@@ -484,10 +494,10 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
         <button class="type-btn" id="tb-inc" onclick="setTxType('income')">💰 Ingrés</button>
       </div>
       <div class="amt-card"><span class="cur-sym">€</span><input class="amt-inp" id="inp-amt" type="number" placeholder="0,00" min="0" step="0.01" inputmode="decimal"></div>
+      <div class="fsec"><div class="flbl">CONCEPTE</div><div class="card"><input class="note-inp" id="inp-note" type="text" placeholder="Nom de la transacció..." maxlength="100"></div></div>
       <div class="fsec"><div class="flbl">DATA</div><div class="card"><input type="date" class="note-inp" id="inp-date" style="cursor:pointer;color:var(--label)"></div></div>
       <div class="fsec"><div class="flbl" id="method-lbl">MÈTODE DE PAGAMENT</div><div class="card" id="method-card"></div></div>
       <div class="fsec"><div class="flbl">CATEGORIA</div><div class="cat-grid" id="form-cats"></div></div>
-      <div class="fsec"><div class="flbl">NOTA (OPCIONAL)</div><div class="card"><input class="note-inp" id="inp-note" type="text" placeholder="Descripció..." maxlength="100"></div></div>
       <button class="save-btn exp-save" id="main-save" onclick="saveTx()">Desa despesa</button>
       <div style="height:16px"></div>
     </div>
@@ -555,12 +565,17 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI
       <span class="m-title" id="catdet-title">Categoria</span>
       <span style="width:60px"></span>
     </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 12px;gap:6px;flex-shrink:0">
+      <div class="cat-ico" id="catdet-icon" style="width:52px;height:52px;border-radius:14px;font-size:24px"></div>
+      <div style="font-size:30px;font-weight:700;color:var(--label);letter-spacing:-.5px" id="catdet-total">€0,00</div>
+      <div style="font-size:13px;color:var(--gray)" id="catdet-count"></div>
+    </div>
+    <div class="search-wrap" style="flex-shrink:0">
+      <span class="search-ico">🔍</span>
+      <input class="search-inp" id="catdet-q" type="search" placeholder="Cerca per nota o import..." oninput="onCatDetSearch(this.value)" autocomplete="off" autocorrect="off" spellcheck="false">
+      <button class="search-x" id="catdet-x" onclick="clearCatDetSearch()" style="display:none">✕</button>
+    </div>
     <div class="mscroll">
-      <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 20px;gap:6px">
-        <div class="cat-ico" id="catdet-icon" style="width:52px;height:52px;border-radius:14px;font-size:24px"></div>
-        <div style="font-size:30px;font-weight:700;color:var(--label);letter-spacing:-.5px" id="catdet-total">€0,00</div>
-        <div style="font-size:13px;color:var(--gray)" id="catdet-count"></div>
-      </div>
       <div id="catdet-list"></div>
       <div style="height:24px"></div>
     </div>
@@ -598,7 +613,6 @@ const EXP_CATS=[
   {id:'restaurants',   label:'Restaurants',   icon:'🍽️',color:'#FF3B30'},
   {id:'transport',     label:'Transport',     icon:'🚗',color:'#007AFF'},
   {id:'entertainment', label:'Entreteniment', icon:'🎮',color:'#AF52DE'},
-  {id:'health',        label:'Salut',         icon:'❤️',color:'#FF2D55'},
   {id:'clothing',      label:'Roba',          icon:'👕',color:'#5AC8FA'},
   {id:'home',          label:'Llar',          icon:'🏠',color:'#34C759'},
   {id:'subscriptions', label:'Subscripcions', icon:'🔄',color:'#5856D6'},
@@ -613,7 +627,7 @@ const INC_CATS=[
   {id:'gift',        label:'Regal',         icon:'🎁',color:'#FF9500'},
   {id:'income_other',label:'Altres ingressos',icon:'➕',color:'#8E8E93'},
 ];
-const EXP_METHS=[{id:'card',label:'Targeta',icon:'💳'},{id:'cash',label:'Efectiu',icon:'💵'}];
+const EXP_METHS=[{id:'card',label:'Targeta',icon:'💳'},{id:'cash',label:'Efectiu',icon:'💵'},{id:'bizum',label:'Bizum',icon:'📱'}];
 const INC_METHS=[{id:'transfer',label:'Transferència',icon:'🏦'},{id:'bizum',label:'Bizum',icon:'📱'},{id:'cash',label:'Efectiu',icon:'💵'}];
 
 function getCat(id){return[...EXP_CATS,...INC_CATS].find(c=>c.id===id)||EXP_CATS.at(-1)}
@@ -856,7 +870,7 @@ function renderMovements(){
 }
 
 // ── SUMMARY ──────────────────────────────────────────────────────
-let sumOff=0,catTab='expense',sumSubTab='resumen';
+let sumOff=0,catTab='expense',sumSubTab='resumen',trendPeriod=6;
 
 function setSumTab(t){
   sumSubTab=t;
@@ -936,23 +950,42 @@ function renderSummary(){
     const expItems=monthly.filter(t=>t.type==='expense');
     if(expItems.length>0){
       statsSec.style.display='block';
-      const maxE=Math.max(...expItems.map(t=>netAmt(t,all)));
-      const avg=stats.expense/(expItems.length||1);
+      const maxTx=expItems.reduce((b,t)=>netAmt(t,all)>netAmt(b,all)?t:b,expItems[0]);
+      const maxE=netAmt(maxTx,all);
+      const maxCat=getCat(maxTx.categoryId);
+      const maxDetail=maxTx.note?maxTx.note.slice(0,24):maxCat.label;
       document.getElementById('sum-stats').innerHTML=`
-        <div class="stat-card"><div class="stat-ico">💸</div><div class="stat-val">${expItems.length}</div><div class="stat-lbl">Despeses</div></div>
-        <div class="stat-card"><div class="stat-ico">📈</div><div class="stat-val">${fmt(maxE)}</div><div class="stat-lbl">Major despesa</div></div>
-        <div class="stat-card"><div class="stat-ico">🧮</div><div class="stat-val">${fmt(avg)}</div><div class="stat-lbl">Mitjana</div></div>
+        <div class="stat-card">
+          <div class="stat-top"><span class="stat-lbl">Despeses</span><span class="stat-ico">💸</span></div>
+          <div class="stat-vbox"><div class="stat-val">${expItems.length}</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><span class="stat-lbl">Major despesa</span><span class="stat-ico">📈</span></div>
+          <div class="stat-vbox"><div class="stat-val">${fmt(maxE)}</div><div class="stat-det">${maxCat.icon} ${maxDetail}</div></div>
+        </div>
       `;
     }else statsSec.style.display='none';
   }
 }
 
 // ── TRENDS ───────────────────────────────────────────────────────
+function setTrendPeriod(n){
+  trendPeriod=n;
+  [{k:'trend-3m',v:3},{k:'trend-6m',v:6},{k:'trend-1a',v:12}].forEach(({k,v})=>{
+    document.getElementById(k).classList.toggle('on',v===n);
+  });
+  renderTrends();
+}
+
 function renderTrends(){
   const all=load().map(norm);
   const now=new Date();
   const months=[];
-  for(let i=5;i>=0;i--){
+  const barW=trendPeriod<=3?20:trendPeriod<=6?13:8;
+  const lblMap={3:'ÚLTIMS 3 MESOS',6:'ÚLTIMS 6 MESOS',12:'ÚLTIM ANY'};
+  const titleEl=document.getElementById('chart-title');
+  if(titleEl) titleEl.textContent=(lblMap[trendPeriod]||'ÚLTIMS '+trendPeriod+' MESOS')+' — INGRESSOS VS DESPESES';
+  for(let i=trendPeriod-1;i>=0;i--){
     const d=new Date(now.getFullYear(),now.getMonth()-i,1);
     const m=d.getMonth(),y=d.getFullYear();
     const monthly=all.filter(t=>{const td=new Date(t.date);return td.getMonth()===m&&td.getFullYear()===y});
@@ -971,8 +1004,8 @@ function renderTrends(){
       const eh=Math.max(Math.round(m.expense/maxVal*H),m.expense>0?3:0);
       return`<div class="chart-col">
         <div class="chart-grp">
-          <div class="cbar inc" style="height:${ih}px" title="Ingresos: ${fmt(m.income)}"></div>
-          <div class="cbar exp" style="height:${eh}px" title="Gastos: ${fmt(m.expense)}"></div>
+          <div class="cbar inc" style="height:${ih}px;width:${barW}px" title="Ingressos: ${fmt(m.income)}"></div>
+          <div class="cbar exp" style="height:${eh}px;width:${barW}px" title="Despeses: ${fmt(m.expense)}"></div>
         </div>
         <div class="chart-mo">${m.lbl}</div>
       </div>`;
@@ -1074,6 +1107,7 @@ function saveTx(){
   const amount=parseFloat(raw);
   if(!raw||isNaN(amount)||amount<=0){showToast('Introdueix un import vàlid');return}
   const note=document.getElementById('inp-note').value.trim();
+  if(!note){showToast('El concepte és obligatori');return}
   const dateVal=document.getElementById('inp-date').value;
   const date=dateVal?new Date(dateVal+'T12:00:00').toISOString():new Date().toISOString();
   const list=load();
@@ -1369,7 +1403,7 @@ function autoCat(concept,isIncome){
     {re:/365 T|RENFE|METRO |FGC|TMB|RODALIES|CABIFY|UBER |TAXI|PETROPRIX|REPSOL|CEPSA|GALP|PARKING|PEATGE/,cat:'transport'},
     {re:/CLAUDE|NETFLIX|SPOTIFY|PRIME|DISNEY|HBO|APPLE\.COM|GOOGLE|MICROSOFT|SUBSCRI|YOUTUBE/,cat:'subscriptions'},
     {re:/CLAP|JOCS|CINE|CINEMA|TEATRO|FNAC|STEAM|PLAYSTATION|XBOX|NINTENDO/,cat:'entertainment'},
-    {re:/FARMACIA|CLINICA|MEDIC|DOCTOR|HOSPITAL|DENTAL|OPTICA|LAIETANIA|GIMNASIO|FITNESS/,cat:'health'},
+    {re:/FARMACIA|CLINICA|MEDIC|DOCTOR|HOSPITAL|DENTAL|OPTICA|LAIETANIA|GIMNASIO|FITNESS/,cat:'other'},
     {re:/ZARA|H&M|MANGO|PRIMARK|PULL|BERSHKA|STRADIVARIUS|MERCHANDIS|DECATHLON/,cat:'clothing'},
     {re:/IKEA|LEROY|BAUHAUS|ENDESA|NATURGY|IBERDROLA|COMUNIDAD|ALQUILER/,cat:'home'},
   ];
@@ -1546,7 +1580,31 @@ function desvinculaExp(expId){
 }
 
 // ── CATEGORY DETAIL ───────────────────────────────────────────────
+let catDetCtx={catId:null,type:null,moOff:0,q:''};
+
 function openCatDet(catId,type,moOff){
+  catDetCtx={catId,type,moOff,q:''};
+  document.getElementById('catdet-q').value='';
+  document.getElementById('catdet-x').style.display='none';
+  _renderCatDet();
+  document.getElementById('catdet-overlay').classList.add('open');
+}
+
+function onCatDetSearch(val){
+  catDetCtx.q=val;
+  document.getElementById('catdet-x').style.display=val?'block':'none';
+  _renderCatDet();
+}
+
+function clearCatDetSearch(){
+  catDetCtx.q='';
+  document.getElementById('catdet-q').value='';
+  document.getElementById('catdet-x').style.display='none';
+  _renderCatDet();
+}
+
+function _renderCatDet(){
+  const{catId,type,moOff,q}=catDetCtx;
   const all=load().map(norm);
   const now=new Date();
   const target=new Date(now.getFullYear(),now.getMonth()-moOff,1);
@@ -1560,12 +1618,14 @@ function openCatDet(catId,type,moOff){
   document.getElementById('catdet-icon').textContent=c.icon;
   document.getElementById('catdet-icon').style.background=c.color+'22';
   document.getElementById('catdet-total').textContent=fmt(total);
+  const ql=q.trim().toLowerCase();
+  if(ql) txs=txs.filter(t=>(t.note||'').toLowerCase().includes(ql)||t.amount.toFixed(2).includes(ql));
   document.getElementById('catdet-count').textContent=`${txs.length} moviment${txs.length!==1?'s':''}`;
   document.getElementById('catdet-list').innerHTML=txs.length?
     `<div class="card" style="margin:0 16px">${txs.map((t,i)=>txHTML(t,all,i<txs.length-1)).join('')}</div>`:
-    `<div style="text-align:center;padding:32px;color:var(--gray)">Sense moviments</div>`;
-  document.getElementById('catdet-overlay').classList.add('open');
+    `<div style="text-align:center;padding:32px;color:var(--gray)">${ql?`Cap resultat per "${q}"`:'Sense moviments'}</div>`;
 }
+
 function closeCatDet(){document.getElementById('catdet-overlay').classList.remove('open')}
 
 // ── TOAST ─────────────────────────────────────────────────────────
