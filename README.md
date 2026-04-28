@@ -16,11 +16,6 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 
 ## Funcionalitats principals
 
-### 🔐 Seguretat i accés
-- Autenticació biométrica (Face ID / empremta digital) via WebAuthn
-- Pantalla de bloqueig amb rellotge i data
-- Accés alternatiu per toc en cas que la biometria no estigui disponible
-
 ### ➕ Gestió de moviments
 - Afegir, editar i eliminar despeses i ingressos
 - Camp **Concepte** obligatori per identificar cada transacció
