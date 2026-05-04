@@ -152,6 +152,25 @@ body{background:#C7C7CC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 /* day separator */
 .day-sep{font-size:11px;font-weight:700;color:var(--gray);padding:10px 4px 4px;letter-spacing:.3px;text-transform:uppercase}
 .mgrp .day-sep+.card{margin-bottom:6px}
+/* compact add form */
+.amt-concept-card{margin:8px 16px 10px;background:var(--card);border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
+.amt-inp-sm{font-size:34px;font-weight:700;color:var(--label);border:none;outline:none;background:none;flex:1;font-family:inherit;min-width:0}
+.amt-inp-sm::placeholder{color:var(--gray3)}
+.concept-inp{width:100%;padding:8px 14px 12px;font-size:16px;color:var(--label);border:none;outline:none;background:none;font-family:inherit;display:block}
+.concept-inp::placeholder{color:var(--gray3)}
+.form-lbl-sm{font-size:11px;font-weight:700;color:var(--gray);padding:6px 16px 4px;letter-spacing:.5px}
+.cat-hscroll{display:flex;overflow-x:auto;gap:6px;padding:4px 16px 10px;scrollbar-width:none;flex-shrink:0}
+.cat-hscroll::-webkit-scrollbar{display:none}
+.cat-hbtn{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 6px 8px;border-radius:12px;border:2px solid transparent;cursor:pointer;transition:all .15s;min-width:58px;background:none}
+.cat-hbtn.on{border-color:var(--cc)}
+.cat-hbtn-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.cat-hbtn-lbl{font-size:10px;color:var(--label2);text-align:center;white-space:nowrap;overflow:hidden;max-width:56px;text-overflow:ellipsis}
+.meth-row{display:flex;gap:8px;padding:4px 16px 10px;overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.meth-row::-webkit-scrollbar{display:none}
+.meth-pill{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:8px 14px;border-radius:20px;background:var(--gray5);border:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--gray);font-family:inherit;transition:all .15s;white-space:nowrap}
+.meth-pill.on{background:var(--blue);color:#fff}
+.meth-pill.on-g{background:var(--green);color:#fff}
+.date-row-compact{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--card);margin:0 16px 10px;border-radius:12px}
 
 /* trends chart */
 .chart-wrap{margin:0 16px;background:var(--card);border-radius:16px;padding:16px}
@@ -344,7 +363,7 @@ body{background:#C7C7CC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
     <div class="hero pos" id="hero">
       <div class="hero-mo" id="hero-mo"></div>
       <div class="hero-amt" id="hero-amt">€0,00</div>
-      <div class="hero-sub">Saldo del mes</div>
+      <div class="hero-sub" id="hero-sub">Saldo del mes</div>
       <div class="hero-row">
         <div class="hero-item"><div class="hero-item-lbl">📈 Ingressos</div><div class="hero-item-amt" id="hero-inc">€0,00</div></div>
         <div class="hero-div"></div>
@@ -480,18 +499,31 @@ body{background:#C7C7CC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
       <span class="m-title" id="add-title">Nova despesa</span>
       <button class="m-save" onclick="saveTx()">Desa</button>
     </div>
-    <div class="mscroll">
-      <div class="type-tog">
+    <div style="padding:0 16px 4px">
+      <div class="type-tog" style="margin:0">
         <button class="type-btn ae" id="tb-exp" onclick="setTxType('expense')">💸 Despesa</button>
         <button class="type-btn" id="tb-inc" onclick="setTxType('income')">💰 Ingrés</button>
       </div>
-      <div class="amt-card"><span class="cur-sym">€</span><input class="amt-inp" id="inp-amt" type="number" placeholder="0,00" min="0" step="0.01" inputmode="decimal"></div>
-      <div class="fsec"><div class="flbl">CONCEPTE</div><div class="card"><input class="note-inp" id="inp-note" type="text" placeholder="Nom de la transacció..." maxlength="100"></div></div>
-      <div class="fsec"><div class="flbl">DATA</div><div class="card"><input type="date" class="note-inp" id="inp-date" style="cursor:pointer;color:var(--label)"></div></div>
-      <div class="fsec"><div class="flbl" id="method-lbl">MÈTODE DE PAGAMENT</div><div class="card" id="method-card"></div></div>
-      <div class="fsec"><div class="flbl">CATEGORIA</div><div class="cat-grid" id="form-cats"></div></div>
+    </div>
+    <div class="amt-concept-card">
+      <div style="display:flex;align-items:center;gap:4px;padding:14px 14px 8px">
+        <span style="font-size:32px;font-weight:700;color:var(--label)">€</span>
+        <input class="amt-inp-sm" id="inp-amt" type="number" placeholder="0,00" min="0" step="0.01" inputmode="decimal">
+      </div>
+      <div style="height:.5px;background:var(--gray5);margin:0 14px"></div>
+      <input class="concept-inp" id="inp-note" type="text" placeholder="Concepte..." maxlength="100">
+    </div>
+    <div class="form-lbl-sm">CATEGORIA</div>
+    <div class="cat-hscroll" id="form-cats"></div>
+    <div class="form-lbl-sm" id="method-lbl">MÈTODE DE PAGAMENT</div>
+    <div class="meth-row" id="method-card"></div>
+    <div class="date-row-compact">
+      <span style="font-size:16px">📅</span>
+      <span style="flex:1;font-size:15px;color:var(--label)">Data</span>
+      <input type="date" id="inp-date" style="border:none;background:none;font-size:14px;color:var(--gray);font-family:inherit;cursor:pointer;outline:none">
+    </div>
+    <div style="padding:8px 16px 16px">
       <button class="save-btn exp-save" id="main-save" onclick="saveTx()">Desa despesa</button>
-      <div style="height:16px"></div>
     </div>
   </div>
 </div>
@@ -802,6 +834,17 @@ function renderHome(){
   document.getElementById('hero-inc').textContent=fmt(stats.income);
   document.getElementById('hero-exp').textContent=fmt(stats.expense);
   document.getElementById('hero').className='hero '+(stats.net>=0?'pos':'neg');
+  const prevTarget=new Date(now.getFullYear(),now.getMonth()-1,1);
+  const prevM=prevTarget.getMonth(),prevY=prevTarget.getFullYear();
+  const prevMonthly=all.filter(t=>{const d=new Date(t.date);return d.getMonth()===prevM&&d.getFullYear()===prevY});
+  const prevStats=moStats(prevMonthly,all);
+  let cmpStr='';
+  if(prevStats.expense>0&&stats.expense>0){
+    const diff=Math.round((stats.expense-prevStats.expense)/prevStats.expense*100);
+    const prevMo=prevTarget.toLocaleDateString('ca-ES',{month:'long'});
+    cmpStr=` · ${diff>0?'↑':'↓'} ${Math.abs(diff)}% despesa vs ${prevMo}`;
+  }
+  document.getElementById('hero-sub').textContent=`Saldo del mes${cmpStr}`;
 
   const recent=monthly.slice(0,6);
   const sec=document.getElementById('home-recent-sec');
@@ -1104,22 +1147,20 @@ function buildMethods(){
   const accs=loadAccs();
   const topMeth=isExp?getTopMeth(fMeth):fMeth;
   const selAcc=accs.find(a=>a.id===fMeth);
-  document.getElementById('method-card').innerHTML=meths.map((m,i)=>{
+  document.getElementById('method-card').innerHTML=meths.map(m=>{
     const sel=topMeth===m.id;
-    const selCls=sel?(isExp?'sel':'sel-g'):'';
-    const chkCls=isExp?'chk':'chk-g';
-    const onclick=isExp?`selMethTop('${m.id}')`:`selMeth('${m.id}')`;
-    return`<div class="mrow ${selCls}" onclick="${onclick}">
-      <span class="mrow-ico">${m.icon}</span>
-      <span class="mrow-lbl">${m.label}${isExp&&sel&&selAcc?`<span style="font-size:13px;color:var(--gray);font-weight:400"> · ${selAcc.name}</span>`:''}</span>
-      ${sel?`<span class="${chkCls}">✓</span>`:''}
-      ${isExp&&m.hasAccs?`<span style="font-size:16px;color:var(--gray3);margin-left:4px">›</span>`:''}
-    </div>${i<meths.length-1?'<div class="rsep" style="margin-left:52px"></div>':''}`;
+    const label=isExp&&sel&&selAcc?selAcc.name:m.label;
+    const typeAccCount=isExp&&m.hasAccs?accs.filter(a=>a.type===m.id).length:0;
+    const chevron=typeAccCount>1?' ›':'';
+    return`<button class="meth-pill ${sel?(isExp?'on':'on-g'):''}" onclick="${isExp?`selMethTop('${m.id}')`:`selMeth('${m.id}')`}">${m.icon} ${label}${chevron}</button>`;
   }).join('');
 }
 function selMeth(m){fMeth=m;buildMethods()}
 function selMethTop(type){
   if(type==='cash'||type==='bizum'){fMeth=type;buildMethods();return}
+  const accs=loadAccs().filter(a=>a.type===type);
+  if(accs.length===0){fMeth=type;buildMethods();return}
+  if(accs.length===1){fMeth=accs[0].id;buildMethods();return}
   openAccPick(type);
 }
 let pickAccType=null;
@@ -1151,11 +1192,12 @@ function buildCats(){
   const cats=fType==='expense'?EXP_CATS:INC_CATS;
   document.getElementById('form-cats').innerHTML=cats.map(c=>{
     const on=c.id===fCat;
-    return`<div class="catbtn${on?' on':''}" style="--cc:${c.color}" onclick="selCat('${c.id}')">
-      <div class="catbtn-ico" style="background:${on?c.color:c.color+'22'}">${c.icon}</div>
-      <div class="catbtn-lbl" style="${on?'color:'+c.color+';font-weight:600':''}">${c.label}</div>
+    return`<div class="cat-hbtn${on?' on':''}" style="--cc:${c.color}" onclick="selCat('${c.id}')">
+      <div class="cat-hbtn-ico" style="background:${on?c.color:c.color+'22'}">${c.icon}</div>
+      <div class="cat-hbtn-lbl" style="${on?'color:'+c.color+';font-weight:600':''}">${c.label}</div>
     </div>`;
   }).join('');
+  setTimeout(()=>{const s=document.querySelector('.cat-hbtn.on');if(s)s.scrollIntoView({inline:'center',behavior:'smooth',block:'nearest'})},50);
 }
 function selCat(id){fCat=id;buildCats()}
 

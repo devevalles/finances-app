@@ -112,6 +112,12 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v1.19 — 4 de maig 2026
+- Formulari d'afegir despesa/ingrés redissenyat sense scroll: tot visible en una pantalla
+- Categories en scroll horitzontal amb icones compactes; mètodes de pagament en pastilles
+- Comparació de despesa respecte al mes anterior visible a la targeta principal (↑/↓ %)
+- Targeta/Banc s'autoselecciona directament si només tens un compte configurat
+
 ### v1.18 — 4 de maig 2026
 - El títol "Resum X mesos" de Tendències s'actualitza correctament en canviar el període
 - La secció de Recents a l'Inici mostra només les transaccions del mes actual
