@@ -112,6 +112,11 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v1.21 — 4 de maig 2026
+- Categories del formulari en graella de 2 files (5 columnes per despeses, 3 per ingressos)
+- Seleccionar una categoria ja no desplaça les del costat (s'usa outline sense afectar el layout)
+- Amplada de la finestra augmentada a 720px per una visualització menys compacta
+
 ### v1.20 — 4 de maig 2026
 - Corregit error que impedia que la pantalla s'actualitzés en temps real en eliminar o compensar una transacció
 
