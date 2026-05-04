@@ -112,6 +112,9 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v1.20 — 4 de maig 2026
+- Corregit error que impedia que la pantalla s'actualitzés en temps real en eliminar o compensar una transacció
+
 ### v1.19 — 4 de maig 2026
 - Formulari d'afegir despesa/ingrés redissenyat sense scroll: tot visible en una pantalla
 - Categories en scroll horitzontal amb icones compactes; mètodes de pagament en pastilles

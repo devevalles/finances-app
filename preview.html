@@ -852,7 +852,6 @@ function renderHome(){
   if(monthly.length===0){sec.style.display='none';emp.style.display='flex'}
   else{sec.style.display='block';emp.style.display='none';
     document.getElementById('home-list').innerHTML=recent.map((t,i)=>txHTML(t,all,i<recent.length-1)).join('')}
-  updateWidgets(stats);
 }
 
 function txHTML(t,all,sep=false){
@@ -1648,19 +1647,6 @@ function handleImport(inp){
   reader.readAsText(file);
 }
 
-// ── WIDGETS ───────────────────────────────────────────────────────
-function updateWidgets(stats){
-  const now=new Date();
-  const moLbl=now.toLocaleDateString('ca-ES',{month:'short'}).toUpperCase();
-  const netStr=(stats.net>=0?'':'-')+fmt(Math.abs(stats.net));
-  const netShort=(stats.net>=0?'':'-')+'€'+Math.round(Math.abs(stats.net));
-  document.getElementById('w-net').textContent=netShort;
-  document.getElementById('w-mo').textContent=moLbl+' '+now.getFullYear();
-  document.getElementById('w2-mo').textContent=moLbl;
-  document.getElementById('w2-net').textContent=netStr;
-  document.getElementById('w2-inc').textContent=fmt(stats.income);
-  document.getElementById('w2-exp').textContent=fmt(stats.expense);
-}
 
 // ── DESVINCULAR FROM EXPENSE ─────────────────────────────────────
 function desvinculaExp(expId){
