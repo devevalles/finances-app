@@ -112,6 +112,11 @@ Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTP
 
 ## Últimes actualitzacions
 
+### v1.18 — 4 de maig 2026
+- El títol "Resum X mesos" de Tendències s'actualitza correctament en canviar el període
+- La secció de Recents a l'Inici mostra només les transaccions del mes actual
+- Eliminada la secció d'Estadístiques del Resum (nombre de despeses i major despesa)
+
 ### v1.17 — 28 d'abril 2026
 - Nou mètode de pagament "Banc" per a despeses
 - Targetes i bancs configurables des del botó ··· → Configuració, amb noms personalitzats

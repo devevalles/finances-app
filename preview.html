@@ -149,14 +149,6 @@ body{background:#C7C7CC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .bar-track{height:6px;background:var(--gray6);border-radius:3px;overflow:hidden}
 .bar-fill{height:6px;border-radius:3px;transition:width .4s}
 .cat-pct{font-size:12px;color:var(--gray);margin-top:3px}
-.stats-grid{display:flex;gap:12px;align-items:stretch}
-.stat-card{flex:1;background:var(--card);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.stat-top{display:flex;align-items:center;justify-content:center;gap:6px}
-.stat-lbl{font-size:15px;font-weight:700;color:var(--label)}
-.stat-ico{font-size:17px;line-height:1}
-.stat-vbox{flex:1;background:var(--gray6);border-radius:12px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
-.stat-val{font-size:24px;font-weight:700;color:var(--label);letter-spacing:-.5px}
-.stat-det{font-size:13px;color:var(--gray);text-align:center;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* day separator */
 .day-sep{font-size:11px;font-weight:700;color:var(--gray);padding:10px 4px 4px;letter-spacing:.3px;text-transform:uppercase}
 .mgrp .day-sep+.card{margin-bottom:6px}
@@ -445,10 +437,7 @@ body{background:#C7C7CC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
       <div class="sec" id="sum-cat-sec">
         <div class="card" id="sum-cat-list"></div>
       </div>
-      <div class="sec" id="sum-stats-sec" style="display:none;margin-top:12px">
-        <div class="sec-title" style="margin-bottom:8px">Estadístiques</div>
-        <div class="stats-grid" id="sum-stats"></div>
-      </div>
+
       <div id="sum-empty" class="empty" style="display:none;padding-top:20px">
         <div class="empty-ico">📈</div><div class="empty-title">Sense dades</div>
         <div class="empty-sub" id="sum-empty-lbl"></div>
@@ -470,7 +459,7 @@ body{background:#C7C7CC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
         </div>
       </div>
       <div class="sec" style="margin-top:12px">
-        <div class="sec-title" style="margin-bottom:8px">Resum 6 mesos</div>
+        <div class="sec-title" style="margin-bottom:8px" id="trend-stats-title">Resum 6 mesos</div>
         <div class="card" id="trend-stats"></div>
       </div>
     </div>
@@ -814,10 +803,10 @@ function renderHome(){
   document.getElementById('hero-exp').textContent=fmt(stats.expense);
   document.getElementById('hero').className='hero '+(stats.net>=0?'pos':'neg');
 
-  const recent=all.slice(0,6);
+  const recent=monthly.slice(0,6);
   const sec=document.getElementById('home-recent-sec');
   const emp=document.getElementById('home-empty');
-  if(all.length===0){sec.style.display='none';emp.style.display='flex'}
+  if(monthly.length===0){sec.style.display='none';emp.style.display='flex'}
   else{sec.style.display='block';emp.style.display='none';
     document.getElementById('home-list').innerHTML=recent.map((t,i)=>txHTML(t,all,i<recent.length-1)).join('')}
   updateWidgets(stats);
@@ -972,14 +961,12 @@ function renderSummary(){
 
   const catSec=document.getElementById('sum-cat-sec');
   const empDiv=document.getElementById('sum-empty');
-  const statsSec=document.getElementById('sum-stats-sec');
 
   if(catData.length===0){
-    catSec.style.display='none';statsSec.style.display='none';empDiv.style.display='flex';
+    catSec.style.display='none';empDiv.style.display='flex';
     document.getElementById('sum-empty-lbl').textContent=`Sense ${catTab==='expense'?'despeses':'ingressos'} a ${moName(target)}`;
   }else{
     catSec.style.display='block';empDiv.style.display='none';
-    // ── FIX: use % width so bars fill track correctly ──
     document.getElementById('sum-cat-list').innerHTML=catData.map(({c,amount},i)=>{
       const pct=totalForPct>0?Math.round(amount/totalForPct*100):0;
       const barPct=totalForPct>0?(amount/totalForPct)*100:0;
@@ -994,25 +981,6 @@ function renderSummary(){
         <div style="color:var(--gray3);font-size:14px;margin-left:4px">›</div>
       </div>`;
     }).join('');
-
-    const expItems=monthly.filter(t=>t.type==='expense');
-    if(expItems.length>0){
-      statsSec.style.display='block';
-      const maxTx=expItems.reduce((b,t)=>netAmt(t,all)>netAmt(b,all)?t:b,expItems[0]);
-      const maxE=netAmt(maxTx,all);
-      const maxCat=getCat(maxTx.categoryId);
-      const maxDetail=maxTx.note?maxTx.note.slice(0,24):maxCat.label;
-      document.getElementById('sum-stats').innerHTML=`
-        <div class="stat-card">
-          <div class="stat-top"><span class="stat-lbl">Despeses</span><span class="stat-ico">💸</span></div>
-          <div class="stat-vbox"><div class="stat-val">${expItems.length}</div></div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top"><span class="stat-lbl">Major despesa</span><span class="stat-ico">📈</span></div>
-          <div class="stat-vbox"><div class="stat-val">${fmt(maxE)}</div><div class="stat-det">${maxCat.icon} ${maxDetail}</div></div>
-        </div>
-      `;
-    }else statsSec.style.display='none';
   }
 }
 
@@ -1059,7 +1027,10 @@ function renderTrends(){
       </div>`;
     }).join('');
   }
-  // 6-month summary stats
+  // summary stats title
+  const statsTitleMap={3:'Resum 3 mesos',6:'Resum 6 mesos',12:'Resum 1 any'};
+  const statsTitleEl=document.getElementById('trend-stats-title');
+  if(statsTitleEl) statsTitleEl.textContent=statsTitleMap[trendPeriod]||`Resum ${trendPeriod} mesos`;
   const totInc=months.reduce((s,m)=>s+m.income,0);
   const totExp=months.reduce((s,m)=>s+m.expense,0);
   const totNet=totInc-totExp;
