@@ -71,10 +71,11 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 
 ## Tecnologia
 
-- **Vanilla JavaScript** — sense dependències de frameworks
+- **Svelte 5** — framework reactiu amb runes (`$state`, `$derived`, `$effect`)
+- **TypeScript** — tipatge estàtic a tot el codi
+- **Vite** — bundler i servidor de desenvolupament
 - **PDF.js** — per llegir i extreure text d'extractes bancaris
 - **WebAuthn** — per a l'autenticació biométrica
-- **Service Worker** — per al funcionament offline (PWA)
 - **localStorage** — per a la persistència de dades al dispositiu
 
 ---
@@ -82,7 +83,7 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 ## Instal·lació local
 
 ### Requisits
-- Python 3.x (per arrencar el servidor local)
+- Node.js 18 o superior
 - Navegador modern amb suport PWA (Chrome, Safari, Edge)
 
 ### Passos
@@ -91,26 +92,32 @@ L'aplicació està pensada per a ús diari: és ràpida, minimalista i funciona 
 # Clonar el repositori
 git clone https://github.com/devevalles/finances-app.git
 cd finances-app
+
+# Instal·lar dependències
+npm install
+
+# Arrencar el servidor de desenvolupament
+npm run dev
 ```
 
-**Opció 1 — Servidor HTTP (sense HTTPS):**
+Obre el navegador a `http://localhost:5173`.
+
+Per construir la versió de producció:
 ```bash
-python -m http.server 8080
+npm run build
 ```
-
-**Opció 2 — Servidor HTTPS local (recomanat per a biometria i PWA):**
-```bash
-python generate-https-cert.py   # genera el certificat autofirmat
-python https-server.py           # arrenca el servidor
-```
-
-O a Windows, executa directament `start-server.bat` o `start-server-https.bat`.
-
-Obre el navegador a `http://localhost:8080` (o `https://localhost:8443` amb HTTPS).
 
 ---
 
 ## Últimes actualitzacions
+
+### v2.0 — 5 de maig 2026
+- Reescriptura completa de l'aplicació en **Svelte 5 + Vite + TypeScript**
+- Arquitectura de components: cada pantalla i modal és un fitxer `.svelte` independent
+- Estat global reactiu amb runes de Svelte 5 (`$state`, `$derived`, `$effect`)
+- Capa d'abstracció d'emmagatzematge preparada per migrar a API/Supabase en el futur
+- Deploy automàtic a GitHub Pages via GitHub Actions en cada push a `main`
+- Paritat funcional completa amb la versió anterior (v1.21)
 
 ### v1.21 — 4 de maig 2026
 - Categories del formulari en graella de 2 files (5 columnes per despeses, 3 per ingressos)
